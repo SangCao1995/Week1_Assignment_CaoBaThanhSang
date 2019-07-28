@@ -1,0 +1,46 @@
+<h1>Number Guessing Game</h1>
+<p id="myContent">Please type any number (number trong khoảng 1 - 100)</p>
+<input type="number" id="myInput"/>
+<button onclick="myFunction()">Guess</button>
+<h2>Recently guessing</h2>
+<h3 id="recentlyGuessing"></h3>
+
+
+
+<script>
+    //var yourNumber = 10;
+    var min = 1; 
+    var max = 100; 
+    var randomNumber = Math.floor(Math.random() * (+max - +min)) + +min;
+    var recentlyGuessing = "";
+    var count = 10;
+    console.log(randomNumber);
+    var inputNumber;
+    function myFunction() {
+        count--;
+        
+        inputNumber = document.getElementById("myInput").value;
+
+        if(inputNumber == randomNumber) {
+            document.getElementById("myContent").innerHTML = "Yay YOU ARE THE LORD OF THE GUESSES";
+            document.getElementById("myContent").style.backgroundColor = "green";
+        }
+        else if(inputNumber < randomNumber) {
+            document.getElementById("myContent").innerHTML = "Your guess was too low, guess higher. You have " + count +  " guesses left." ;
+            document.getElementById("myContent").style.backgroundColor = "red";
+        }
+        else if(inputNumber > randomNumber) {
+            document.getElementById("myContent").innerHTML = "Your guess was too high, guess lower. You have " + count +  " guesses left.";
+            document.getElementById("myContent").style.backgroundColor = "red";
+        }
+
+        recentlyGuessing += inputNumber + "<br>";
+        document.getElementById("recentlyGuessing").innerHTML = recentlyGuessing;
+
+        if(inputNumber != randomNumber && count == 0) {
+            alert("You lose. Try again." + " My number is " + randomNumber);
+            window.location.reload();
+        }
+    }
+    
+</script>
